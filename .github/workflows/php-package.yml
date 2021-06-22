@@ -35,7 +35,7 @@ jobs:
         uses: php-actions/phpunit@v3
         with:
           php_extensions: pcov
-          bootstrap: autoload.php
+          bootstrap: vendor/autoload.php
           configuration: test/phpunit.xml
           args: --coverage-text
       - name: "Upload coverage to Codecov"
