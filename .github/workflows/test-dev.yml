@@ -22,3 +22,8 @@ jobs:
             ini-values: post_max_size=256M, log_errors=1
             coverage: pcov
             tools: pecl
+        - name: PHPUnit tests
+          uses: php-actions/phpunit@v3
+          with:
+            configuration: test/phpunit.xml
+            memory_limit: 256M
