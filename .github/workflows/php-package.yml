@@ -30,7 +30,7 @@ jobs:
           ini-values: post_max_size=256M, log_errors=1
           coverage: pcov
           tools: composer:v2
-      - uses: php-actions/composer@v5
+      #- uses: php-actions/composer@v5
       - name: PHPUnit tests
         uses: php-actions/phpunit@v3
         with:
