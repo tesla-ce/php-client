@@ -29,20 +29,7 @@ jobs:
           extensions: mbstring, intl
           ini-values: post_max_size=256M, log_errors=1
           coverage: pcov 
-          tools: phpunit
-      - name: Setup PCOV
-        run: |
-          composer require pcov/clobber
-          vendor/bin/pcov clobber
-      - name: PHPUnit tests
-        uses: php-actions/phpunit@v3
-        with:
-          php_extensions: xdebug          
-          configuration: test/phpunit.xml
-          args: --coverage-text
-        env:
-          XDEBUG_MODE: coverage
-          TEST_NAME: ${{ matrix.operating-system }}-${{ matrix.php-versions }}
+          tools: phpunit           
       - name: "Upload coverage to Codecov"
         uses: codecov/codecov-action@v1.5.0
         if: matrix.operating-system == 'ubuntu-latest'
