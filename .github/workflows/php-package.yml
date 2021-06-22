@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Python package
+name: PHP package
 
 on:
   push:
@@ -34,10 +34,10 @@ jobs:
         uses: php-actions/phpunit@v3
         with:
           configuration: test/phpunit.xml
-
           memory_limit: 256M
       - name: "Upload coverage to Codecov"
         uses: codecov/codecov-action@v1.5.0
+        if: matrix.operating-system == 'ubuntu-latest'
         continue-on-error: true
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
