@@ -33,7 +33,8 @@ jobs:
       - name: PHPUnit tests
         uses: php-actions/phpunit@v3
         with:
-          configuration: phpunit.xml
+          configuration: test/phpunit.xml
+
           memory_limit: 256M
       - name: "Upload coverage to Codecov"
         uses: codecov/codecov-action@v1.5.0

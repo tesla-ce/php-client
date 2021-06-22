@@ -3,11 +3,23 @@
     "description": "PHP Client SDK for TeSLA CE",
     "type": "library",
     "license": "AGPL-3.0",
+    "require-dev": {
+		"ext-curl": "*",
+		"ext-dom": "*",
+		"ext-json": "*",
+		"ext-sqlite3": "*",
+		"phpunit/phpunit": "9.*"
+	},
     "autoload": {
         "psr-4": {
             "Teslace\\PhpClient\\": "src/"
         }
     },
+    "autoload-dev": {
+		"psr-4": {
+			"Teslace\\PhpClient\\Test\\": "test"
+		}
+	},
     "authors": [
         {
             "name": "Roger",
