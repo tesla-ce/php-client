@@ -1,5 +1,5 @@
 {
-    "name": "teslace/php-client",
+    "name": "tesla-ce/php-client",
     "description": "PHP Client SDK for TeSLA CE",
     "type": "library",
     "license": "AGPL-3.0",
