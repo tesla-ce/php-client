@@ -34,10 +34,13 @@ jobs:
       - name: PHPUnit tests
         uses: php-actions/phpunit@v3
         with:
-          php_extensions: pcov
-          bootstrap: vendor/autoload.php
+          php_extensions: xdebug
+          bootstrap: src/autoload.php
           configuration: test/phpunit.xml
           args: --coverage-text
+        env:
+          XDEBUG_MODE: coverage
+          TEST_NAME: ${{ matrix.operating-system }}-${{ matrix.php-versions }}
       - name: "Upload coverage to Codecov"
         uses: codecov/codecov-action@v1.5.0
         if: matrix.operating-system == 'ubuntu-latest'
