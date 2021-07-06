@@ -1,34 +1,36 @@
 <?php
 use PHPUnit\Framework\TestCase;
+use tesla_ce\client\Client;
+use tesla_ce\client\exceptions\ResponseError;
 
 class ActivityTest extends TestCase
 {
-    public function testEmpty()
+    /**
+     * @covers \tesla_ce\client\Client::__construct
+     */
+    public function testClient()
     {
-        $stack = [];
-        $this->assertEmpty($stack);
+        $role_id = 'ROLE_ID';
+        $secret_id = 'SECRET_ID';
+        $base_url = 'http://localhost';
+        $verify_ssl = false;
+        $cache = null;
+        try {
+            $client = new Client($role_id, $secret_id, $base_url, $verify_ssl, $cache);
+        } catch(ResponseError $err) {}
 
-        return $stack;
+        $this->assertEmpty($client);
+
+        return $client;
     }
 
     /**
-     * @depends testEmpty
+     * @depends testClient
+     * @covers \tesla_ce\client\Client::__construct
      */
-    public function testPush(array $stack)
+    public function testPush(Client $client=null)
     {
-        array_push($stack, 'foo');
-        $this->assertSame('foo', $stack[count($stack)-1]);
-        $this->assertNotEmpty($stack);
-
-        return $stack;
+        $this->assertEmpty($client);
     }
 
-    /**
-     * @depends testPush
-     */
-    public function testPop(array $stack)
-    {
-        $this->assertSame('foo', array_pop($stack));
-        $this->assertEmpty($stack);
-    }
 }
