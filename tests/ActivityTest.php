@@ -15,6 +15,8 @@ class ActivityTest extends TestCase
         $base_url = 'http://localhost';
         $verify_ssl = false;
         $cache = null;
+        $client = null;
+
         try {
             $client = new Client($role_id, $secret_id, $base_url, $verify_ssl, $cache);
         } catch(ResponseError $err) {}
