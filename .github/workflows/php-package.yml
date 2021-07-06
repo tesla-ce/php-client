@@ -59,3 +59,15 @@ jobs:
         with:
           fail_ci_if_error: true
           env_vars: OS,PHP
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    steps:
+      - name: Store version
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: Build package
+        run: |
+          # Publish manually
+          curl -XPOST -H 'content-type:application/json' 'https://packagist.org/api/update-package?username=rogerrcod&apiToken=${{ secrets.PACKAGIST_API_TOKEN}}' -d'{"repository":{"url":"https://packagist.org/packages/tesla-ce/client"}}'
