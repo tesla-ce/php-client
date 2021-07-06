@@ -3,5 +3,4 @@ services:
   php:
     image: php:7.3.29-fpm-alpine3.14
     volumes:
-      - ./src:/code
-      - ./composer.phar:/composer.phar
+      - ./:/code
