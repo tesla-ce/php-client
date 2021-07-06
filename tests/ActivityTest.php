@@ -7,6 +7,10 @@ class ActivityTest extends TestCase
 {
     /**
      * @covers \tesla_ce\client\Client::__construct
+     * @covers \tesla_ce\client\Connector::__construct
+     * @covers \tesla_ce\client\Connector::getConfiguration
+     * @covers \tesla_ce\client\Connector::getInternalConfiguration
+     * @covers \tesla_ce\client\Connector::makeRequest
      */
     public function testClient()
     {
