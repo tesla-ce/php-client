@@ -93,3 +93,15 @@ jobs:
         run: |
           # Publish manually
           curl -XPOST -H 'content-type:application/json' 'https://packagist.org/api/update-package?username=rogerrcod&apiToken=${{ secrets.PACKAGIST_API_TOKEN}}' -d'{"repository":{"url":"https://packagist.org/packages/tesla-ce/client"}}'
+  sonar:
+    name: Sonar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: docker://sonarsource/sonar-scanner-cli:latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}

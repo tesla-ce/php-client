@@ -1,3 +1,7 @@
+[![codecov](https://codecov.io/gh/tesla-ce/php-client/branch/main/graph/badge.svg?token=C0zHLoU7rD)](https://codecov.io/gh/tesla-ce/php-client)
+[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
+[![Quality gate](https://sonar.sunai.uoc.edu/api/project_badges/quality_gate?project=tesla-ce_php-client)](https://sonar.sunai.uoc.edu/dashboard?id=tesla-ce_php-client)
+
 # TeSLA CE PHP SDK Client
 
 | :warning: This repository is **under construction**. Final release of TeSLA Community Edition source code is expected by the **end of 2021** |
