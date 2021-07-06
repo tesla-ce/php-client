@@ -12,7 +12,28 @@ on:
     types: 
       - created
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get version values
+        id: vars
+        run: |
+          echo ::set-output name=version::$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' composer.json)
+          echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: Show captured versions
+        run: |
+          echo 'Version in source code: ${{ steps.vars.outputs.version }}'
+          echo 'Release version: ${{ steps.vars.outputs.tag }}'
+      - name: Check version tag
+        uses: nick-invision/assert-action@v1.1.0
+        if: github.event_name == 'release'
+        with:
+          expected: ${{ steps.vars.outputs.tag }}
+          actual: ${{ steps.vars.outputs.version }}
+          comparison: exact
   build:
+    needs: check
     strategy:
       fail-fast: false
       matrix:
