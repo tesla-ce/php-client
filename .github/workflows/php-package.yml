@@ -47,7 +47,7 @@ jobs:
           composer run-script post-install-cmd --no-interaction
       # Add a step to run migrations if required
       - name: Test with phpunit
-        run: vendor/bin/phpunit --coverage-text test
+        run: vendor/bin/phpunit --coverage-text tests
       - name: "Upload coverage to Codecov"
         uses: codecov/codecov-action@v1.5.0
         if: matrix.operating-system == 'ubuntu-latest'
