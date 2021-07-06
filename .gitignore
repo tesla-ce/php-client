@@ -2,4 +2,5 @@
 .php_cs.cache
 
 /vendor/
+/src/vendor/
 composer.phar
