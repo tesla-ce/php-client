@@ -81,18 +81,13 @@ jobs:
           fail_ci_if_error: true
           env_vars: OS,PHP
           files: ./coverage.xml
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.event_name == 'release'
-    steps:
-      - name: Store version
-        id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-      - name: Build package
+      - name: Fossa update license analysis
+        if: matrix.php-version == 7.3
+        continue-on-error: true
         run: |
-          # Publish manually
-          curl -XPOST -H 'content-type:application/json' 'https://packagist.org/api/update-package?username=rogerrcod&apiToken=${{ secrets.PACKAGIST_API_TOKEN}}' -d'{"repository":{"url":"https://packagist.org/packages/tesla-ce/client"}}'
+          curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash
+          # fossa init
+          FOSSA_API_KEY=${{ secrets.FOSSA_API_KEY}} fossa analyze
   sonar:
     needs: build
     name: Sonar
@@ -106,3 +101,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  publish:
+    needs: sonar
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    steps:
+      - name: Store version
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: Build package
+        run: |
+          # Publish manually
+          curl -XPOST -H 'content-type:application/json' 'https://packagist.org/api/update-package?username=rogerrcod&apiToken=${{ secrets.PACKAGIST_API_TOKEN}}' -d'{"repository":{"url":"https://packagist.org/packages/tesla-ce/client"}}'
