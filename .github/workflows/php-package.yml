@@ -94,6 +94,7 @@ jobs:
           # Publish manually
           curl -XPOST -H 'content-type:application/json' 'https://packagist.org/api/update-package?username=rogerrcod&apiToken=${{ secrets.PACKAGIST_API_TOKEN}}' -d'{"repository":{"url":"https://packagist.org/packages/tesla-ce/client"}}'
   sonar:
+    needs: build
     name: Sonar
     runs-on: ubuntu-latest
     steps:
