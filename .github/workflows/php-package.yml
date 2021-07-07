@@ -83,12 +83,10 @@ jobs:
           files: ./coverage.xml
       - name: Fossa update license analysis
         if: matrix.php-versions == '7.3'
-        #uses: fossa-contrib/fossa-action@v1
-        uses: fossas/fossa-action@v1
+        uses: fossa-contrib/fossa-action@v1
         continue-on-error: true
         with:
-          #fossa-api-key: ${{ secrets.FOSSA_API_KEY }}
-          api-key: ${{ secrets.FOSSA_API_KEY }}
+          fossa-api-key: ${{ secrets.FOSSA_API_KEY }}
         #run: |
         #  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash
         #  fossa init
