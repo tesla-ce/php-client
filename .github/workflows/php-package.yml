@@ -82,7 +82,7 @@ jobs:
           env_vars: OS,PHP
           files: ./coverage.xml
       - name: Fossa update license analysis
-        if: matrix.php-version == 7.3
+        if: matrix.php-version == '7.3'
         continue-on-error: true
         run: |
           curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash
