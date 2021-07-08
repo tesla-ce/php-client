@@ -87,10 +87,6 @@ jobs:
         continue-on-error: true
         with:
           fossa-api-key: ${{ secrets.FOSSA_API_KEY }}
-        #run: |
-        #  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash
-        #  fossa init
-        #  FOSSA_API_KEY=${{ secrets.FOSSA_API_KEY}} fossa analyze
   sonar:
     needs: build
     name: Sonar

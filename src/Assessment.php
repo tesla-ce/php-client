@@ -37,9 +37,11 @@ class Assessment
         $redirect_reject_url,
         $reject_message = null,
         $locale = null,
-        $session_id = null
+        $session_id = null,
+        $floating_menu_initial_pos = 'top-right'
     ) {
         $url = 'api/v2/vle/'.$vle_id.'/assessment/';
+
         // todo: review all these fields. Are all fields needed?
         $data = array(
             'vle_course_id'=>$vle_course_id,
@@ -50,7 +52,10 @@ class Assessment
             'redirect_reject_url'=> $redirect_reject_url,
             'reject_message'=> $reject_message,
             'locale'=>$locale,
-            'session_id'=>$session_id
+            'session_id'=>$session_id,
+            'options'=>array(
+                'floating_menu_initial_pos'=>$floating_menu_initial_pos
+            )
         );
 
         return $this->connector->makeAPIRequest('POST', $url, $data);
