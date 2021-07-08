@@ -101,12 +101,15 @@ class Course
         throw new NotImplemented();
     }
 
-    public function addInstructor($vle_id, $course_id, $instructor_uuid)
+    public function addInstructor($vle_id, $course_id, $instructor_uuid, $first_name, $last_name, $email)
     {
         $url = "api/v2/vle/{$vle_id}/course/{$course_id}/instructor/";
 
         $data = array(
             'uid' => $instructor_uuid,
+            'first_name'=>$first_name,
+            'last_name'=>$last_name,
+            'email'=>$email,
         );
 
         return $this->connector->makeAPIRequest('POST', $url, $data);
@@ -117,12 +120,15 @@ class Course
         throw new NotImplemented();
     }
 
-    public function addLearner($vle_id, $course_id, $learner_uuid)
+    public function addLearner($vle_id, $course_id, $learner_uuid, $first_name, $last_name, $email)
     {
         $url = "api/v2/vle/{$vle_id}/course/{$course_id}/learner/";
 
         $data = array(
             'uid' => $learner_uuid,
+            'first_name'=>$first_name,
+            'last_name'=>$last_name,
+            'email'=>$email,
         );
 
         return $this->connector->makeAPIRequest('POST', $url, $data);
