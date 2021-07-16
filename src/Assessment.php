@@ -61,9 +61,13 @@ class Assessment
         return $this->connector->makeAPIRequest('POST', $url, $data);
     }
 
-    public function close($vle_id, $assessment_id)
+    public function close($vle_id, $session_id)
     {
-        $url = 'api/v2/vle/'.$vle_id.'/assessment/close/'.$assessment_id;
-        return $this->connector->makeAPIRequest('GET', $url, array());
+        $url = 'api/v2/vle/'.$vle_id.'/assessment/';
+        $data = array(
+            'session_id' => $session_id,
+            'close' => true
+        );
+        return $this->connector->makeAPIRequest('POST', $url, $data);
     }
 }
