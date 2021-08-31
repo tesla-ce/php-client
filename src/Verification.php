@@ -58,4 +58,26 @@ class Verification
 
         return $this->connector->makeAPIRequest('GET', $url, array());
     }
+
+    public function sendActivityDocument(
+        $institution_id,
+        $learner_id,
+        $data,
+        $instruments,
+        $course_id = null,
+        $activity_id = null,
+        $session_id = null,
+        $metadata = null
+    ) {
+        $url = "api/v2/vle/{$vle_id}/course/{$course_id}/activity/{$activity_id}/attachment/{$learner_id}/";
+
+        $data = array(
+            'data'=>$data,
+            'session_id'=>$session_id,
+            'instruments'=>$instruments,
+            'metadata'=>$metadata
+        );
+
+        return $this->connector->makeAPIRequest('POST', $url, $data);
+    }
 }

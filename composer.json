@@ -1,6 +1,6 @@
 {
     "name": "teslace/php-client",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "PHP Client SDK for TeSLA CE",
     "type": "library",
     "license": "AGPL-3.0",
