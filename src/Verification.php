@@ -60,7 +60,7 @@ class Verification
     }
 
     public function sendActivityDocument(
-        $institution_id,
+        $vle_id,
         $learner_id,
         $data,
         $instruments,
