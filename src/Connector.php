@@ -116,7 +116,7 @@ class Connector
 
         if ($response['headers']['http_code'] != 200 || isset($response['error']) && $response['error'] != '') {
             $error = '';
-            if ($response['error']['error']) {
+            if (isset($response['error']['error'])) {
                 $error = $response['error']['error'];
             }
 
