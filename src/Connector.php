@@ -210,4 +210,15 @@ class Connector
 
         return $response;
     }
+
+    public function clearCache() {
+        if ($this->cache == null) {
+            return false;
+        }
+
+        $this->cache->set(Connector::TESLA_CE_SDK_CONFIGURATION_EXPIRATION, null);
+        $this->cache->set(Connector::TESLA_CE_SDK_CONFIGURATION, null);
+
+        return true;
+    }
 }

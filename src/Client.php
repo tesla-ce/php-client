@@ -118,4 +118,9 @@ class Client
     {
         return $this->vle;
     }
+
+    public function clearCache()
+    {
+        return $this->connector->clearCache();
+    }
 }
